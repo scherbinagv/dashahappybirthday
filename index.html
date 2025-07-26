@@ -5,21 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>З Днем народження, Даша!</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: url('background.jpg') no-repeat center center/cover;
-        color: #333333;
-      text-align: center;
-        /* overflow-x: hidden; запретить горизонтальный скролл */
-  /* overflow-y: hidden; запретить вертикальный скролл */
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-      backdrop-filter: blur(3px);
-      animation: fadeIn 2s ease-in-out;
-    }
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+html {
+  background: url('background.jpg') no-repeat center center / cover;
+  background-attachment: fixed;
+}
+
+body {
+  color: #333333;
+  text-align: center;
+  position: relative;
+  backdrop-filter: blur(3px);
+  animation: fadeIn 2s ease-in-out;
+}ы
 
     h1 {
       font-size: 2rem;
@@ -47,6 +54,7 @@
       cursor: pointer;
       transition: background 0.3s ease;
       animation: fadeIn 2.5s ease;
+      margin-bottom: 10px;
     }
 
     button:hover {
@@ -75,6 +83,55 @@
         transform: scale(1.05);
         }
 
+        @keyframes photoAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotate(-5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+#playButton {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background: rgba(255, 105, 180, 0.95); /* рожевий злегка прозорий */
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  transition: background 0.3s ease, transform 0.3s ease;
+  animation: fadeIn 1s ease-in-out;
+}
+
+#playButton:hover {
+  background: #ff1493;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+
+.photo-collage img {
+  /* залишаємо твої стилі */
+  width: 30%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+
+  /* додаємо анімацію при появі */
+  animation: photoAppear 1s ease forwards;
+  opacity: 0;
+}
 
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -111,11 +168,14 @@
     Ваш браузер не підтримує аудіо.
   </audio>
 
-    <div class="photo-collage">
-    <img src="1.jpeg" alt="Фото 1" />
-    <img src="2.jpeg" alt="Фото 2" />
-    <img src="3.jpeg" alt="Фото 3" />
-    </div>
+  <button id="playButton">🔊 Включити звук</button>
+
+
+  <div class="photo-collage">
+  <img src="1.jpeg" alt="Фото 1" style="animation-delay: 0.2s" />
+  <img src="2.jpeg" alt="Фото 2" style="animation-delay: 0.4s" />
+  <img src="3.jpeg" alt="Фото 3" style="animation-delay: 0.6s" />
+</div>
     
     <h1>Даша! 🎈</h1>
   <h1>🎉 З Днем народження! 🎈</h1>
@@ -125,13 +185,15 @@
     Нехай любов, радість і пригоди завжди будуть поруч! 🎺❤️🚀
   </p>
 
-  <div class="photo-collage">
-    <img src="4.jpeg" alt="Фото 4" />
-    <img src="5.jpeg" alt="Фото 5" />
-    <img src="6.jpeg" alt="Фото 6" />
-    </div>
-  <button onclick="location.reload()">Ще раз хочу! 😄</button>
 
+
+  <div class="photo-collage">
+  <img src="4.jpeg" alt="Фото 1" style="animation-delay: 0.2s" />
+  <img src="5.jpeg" alt="Фото 2" style="animation-delay: 0.4s" />
+  <img src="6.jpeg" alt="Фото 3" style="animation-delay: 0.6s" />
+    </div>
+
+        <button onclick="location.reload()">Ще раз хочу! 😄</button>
   <!-- Кульки 🎈 -->
   <script>
     const colors = ['🎈','🎉','💖','💜','💙','💛','🧡'];
@@ -144,5 +206,18 @@
       document.body.appendChild(b);
     }
   </script>
+  <script>
+  const playButton = document.getElementById('playButton');
+  const audio = new Audio('sound.mp3');
+  audio.loop = true;
+
+  playButton.addEventListener('click', () => {
+    audio.play().then(() => {
+      playButton.style.display = 'none'; // Скрыть кнопку после нажатия
+    }).catch((e) => {
+      alert("Не вдалося відтворити звук: " + e);
+    });
+  });
+</script>
 </body>
 </html>
