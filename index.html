@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>З Днем народження, Даша!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: url('background.jpg') no-repeat center center/cover;
+        color: #333333;
+      text-align: center;
+        /* overflow-x: hidden; запретить горизонтальный скролл */
+  /* overflow-y: hidden; запретить вертикальный скролл */
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      backdrop-filter: blur(3px);
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-top: 2rem;
+      animation: popIn 1s ease-out;
+      margin: 0;
+    }
+
+    p {
+      font-size: 1.5rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      animation: slideUp 1.5s ease-out;
+    }
+
+    button {
+      display: inline-block;
+      width: auto;
+      background: #ff69b4;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      animation: fadeIn 2.5s ease;
+    }
+
+    button:hover {
+      background: #ff1493;
+    }
+
+    .photo-collage {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+        padding: 1rem;
+        }
+
+        .photo-collage img {
+        width: 30%;
+        max-width: 250px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+        }
+
+        .photo-collage img:hover {
+        transform: scale(1.05);
+        }
+
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      0% { transform: translateY(50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -100px;
+      font-size: 2rem;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); }
+      to { transform: translateY(-120vh); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Музика 🎶 -->
+  <audio autoplay loop>
+    <source src="sound.mp3" type="audio/mpeg">
+    Ваш браузер не підтримує аудіо.
+  </audio>
+
+    <div class="photo-collage">
+    <img src="1.jpeg" alt="Фото 1" />
+    <img src="2.jpeg" alt="Фото 2" />
+    <img src="3.jpeg" alt="Фото 3" />
+    </div>
+    
+    <h1>Даша! 🎈</h1>
+  <h1>🎉 З Днем народження! 🎈</h1>
+  <p>
+    Обіймаємо тебе всією родиною і бажаємо, щоб життя було як святковий торт — яскраве, солодке і з вишенькою зверху! 🍰🍒<br>
+    Хай мрії здійснюються, цілі самі біжать до тебе в обійми, а плани виконуються як за помахом чарівної палички ✨.<br>
+    Нехай любов, радість і пригоди завжди будуть поруч! 🎺❤️🚀
+  </p>
+
+  <div class="photo-collage">
+    <img src="4.jpeg" alt="Фото 4" />
+    <img src="5.jpeg" alt="Фото 5" />
+    <img src="6.jpeg" alt="Фото 6" />
+    </div>
+  <button onclick="location.reload()">Ще раз хочу! 😄</button>
+
+  <!-- Кульки 🎈 -->
+  <script>
+    const colors = ['🎈','🎉','💖','💜','💙','💛','🧡'];
+    for (let i = 0; i < 30; i++) {
+      const b = document.createElement('div');
+      b.classList.add('balloon');
+      b.textContent = colors[Math.floor(Math.random() * colors.length)];
+      b.style.left = Math.random() * 100 + 'vw';
+      b.style.animationDuration = (5 + Math.random() * 5) + 's';
+      document.body.appendChild(b);
+    }
+  </script>
+</body>
+</html>
